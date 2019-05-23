@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <mat-toolbar color="primary">
+        <mat-toolbar-row style="display: flex; justify-content: center">
+          <div style="font-size: 30px">Welcome to MineSweeper</div>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <div style="display: flex; justify-content: center">
+      <mat-card class="content">
+      <form style="display: flex; justify-content: center; flex-direction: column">
+        <button type="button" class="btn" (click)="startOrStopGame()"
+                [ngClass]="gameIsRunning? 'btn-danger': 'btn-primary'"
+                style="height: 10vh">
+          <span *ngIf="!gameIsRunning">Start The Game</span>
+          <span *ngIf="gameIsRunning">Stop The Game</span>
+        </button>
+        <div style="font-size: 25px; margin: 20px auto; font-weight: bold; color: navy;"> Your Time: {{counter}}</div>
+      </form>
+      <br>
+      <div class="sweeper" (click)="clickTable($event)" (contextmenu)="putFlagOnPlayground($event)">
+      <table>
+        <tbody>
+        <tr *ngFor="let row of playground; let i = index">
+          <td *ngFor="let col of row; let j = index">
+            <div style="position: relative; width: 40px; height: 40px">
+            <img src="{{col.underPictureUrl}}" alt="{{i}}{{j}}" style="position: absolute;">
+            <img *ngIf="!this.playground[i][j].isOpen" src="{{col.upperPictureUrl}}" alt="{{i}}{{j}}" style="position: relative; z-index: 2;">
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      </div>
+      </mat-card>
+      </div>
+    </div>
+    <div class="col-md-6"></div>
+  </div>
+</div>

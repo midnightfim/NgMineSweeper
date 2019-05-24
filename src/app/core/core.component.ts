@@ -29,6 +29,7 @@ export class CoreComponent implements OnInit {
   ngOnInit() {
   }
 
+  // обработчик главной кнопки
   startOrStopGame(){
     if(!this.gameIsRunning){
       this.startGame();
@@ -47,18 +48,18 @@ export class CoreComponent implements OnInit {
     for (let i = 0; i < this.numRows; i++) {
       this.playground[i] = [];
       for (let j = 0; j < this.numCols; j++){
-        this.playground[i][j] = new PlaygroundSection(i, j, 'closed', 'zero', false);
+        this.playground[i][j] = new PlaygroundSection('closed', 'zero', false);
       }
     }
     // наполняем игровое поле минами
-    this.fillUnderLayer(this.playground);
+    this.fillUnderLayer();
     this.numOfClosedAreas = this.numRows * this.numCols;
 
   }
 
 
   // метод для добавления нижнего слоя в массив playground
-  fillUnderLayer (playground: any[]) {
+  fillUnderLayer () {
     let underLayerArray = [];
     // заполняем матрицу нулями
     for(let i = 0; i < this.numRows; i++) {
@@ -130,7 +131,7 @@ export class CoreComponent implements OnInit {
 
 
   // обработчик для левого клика мышью
-  clickTable(event){
+  leftClickOnTable(event){
     // только если клик по картинке
     if (event.target.localName === 'img') {
       // извлекаем координаты матрицы playground из тега alt

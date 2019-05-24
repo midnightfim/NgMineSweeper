@@ -18,7 +18,7 @@
         <div style="font-size: 25px; margin: 20px auto; font-weight: bold; color: navy;"> Your Time: {{counter}}</div>
       </form>
       <br>
-      <div class="sweeper" (click)="clickTable($event)" (contextmenu)="putFlagOnPlayground($event)">
+      <div class="sweeper" (click)="leftClickOnTable($event)" (contextmenu)="putFlagOnPlayground($event)">
       <table>
         <tbody>
         <tr *ngFor="let row of playground; let i = index">
